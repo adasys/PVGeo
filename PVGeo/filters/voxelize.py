@@ -114,7 +114,8 @@ class VoxelizePoints(FilterBase):
         else:
             x,y,z = xo, yo, zo
 
-        dx,dy,dz = self.__dx, self.__dy, self.__dz
+        if (dx.any() == None or dy.any() == None or dz.any() == None):
+            dx,dy,dz = self.__dx, self.__dy, self.__dz
         if isinstance(dx, np.ndarray) and len(dx) != len(x):
             raise _helpers.PVGeoError('X-Cell spacings are not properly defined for all points.')
         if isinstance(dy, np.ndarray) and len(dy) != len(y):
